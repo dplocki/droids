@@ -33,13 +33,21 @@ app.put("/", (req, res) => {
 });
 
 
-app.get("/:droidName", (req, res) => {
+app.get("/:droidName/:day", (req, res) => {
     const droidName = req.params['droidName'];
+    const dayDateString = new Date(req.params['day']).toDateString();
 
     if (droidsDatabase.has(droidName))
     {
-        res.status(200).send(droidsDatabase.get(droidName).log);
-        return;
+        const results = droidsDatabase
+            .get(droidName)
+            .log
+            .filter(x => x.timestamp.toDateString() === dayDateString)
+
+        if (results.length > 0) {
+            res.status(200).send(results);
+            return;
+        }
     }
 
     res.status(404).send(null);
