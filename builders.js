@@ -88,3 +88,13 @@ exports.staySilenceUntilMessageOccurre = function(expectedMessage, actionOnOccur
         };
     };
 };
+
+
+exports.stepBack = function(message) {
+    return function() {
+        return {
+            message: message,
+            stepBack: true
+        };
+    };
+};

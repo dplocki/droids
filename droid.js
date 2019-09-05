@@ -2,6 +2,7 @@ class Droid {
     constructor(startMessageHandler) {
         this.startMessageHandler = startMessageHandler;
         this.currentMessageHandler = startMessageHandler;
+        this.handlersHistory = [];
     }
 
     message(message) {
@@ -13,8 +14,12 @@ class Droid {
 
         if (response.isEoC && response.isEoC === true) {
             this.currentMessageHandler = this.startMessageHandler;
+            this.handlersHistory = [];
+        } else if (response.stepBack && response.stepBack === true) {
+            this.currentMessageHandler = this.handlersHistory[this.handlersHistory.length - 1];
         } else {
             this.currentMessageHandler = response.handler || this.currentMessageHandler;
+            this.handlersHistory.push(response.handler);
         }
 
         return response.message;

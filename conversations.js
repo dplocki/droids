@@ -4,7 +4,8 @@ const {
     showMessage,
     expectYesOrNo,
     expectSum,
-    whatIsTheSumOfRandom
+    whatIsTheSumOfRandom,
+    stepBack
 } = require('./builders');
 
 
@@ -24,7 +25,7 @@ module.exports.mathDroidConversation = function() {
                                     eoC("I see… Nice try, human!")
                                 )
                             ),
-                            eoC("Let’s try again. What is the sum of 8 and 9?")
+                            stepBack("Let’s try again. What is the sum of 8 and 9?")
                         )
                     ),
                     eoC("​That’s so sad.")
