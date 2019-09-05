@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mathDroidConversation = require('./conversation').mathDroidConversation;
+const mathDroidConversation = require('./conversations').mathDroidConversation;
 const Droid = require('./droid');
 const Scribe = require('./scribe');
 
@@ -35,7 +35,15 @@ app.put("/", (req, res) => {
 
 app.get("/:droidName/:day", (req, res) => {
     const droidName = req.params['droidName'];
-    const dayDateString = new Date(req.params['day']).toDateString();
+    const dayDate = new Date(req.params['day']);
+   
+    if (isNaN(dayDate))
+    {
+        res.status(400).send(null);
+        return;
+    }
+
+    const dayDateString = dayDate.toDateString();
 
     if (droidsDatabase.has(droidName))
     {
