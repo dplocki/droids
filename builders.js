@@ -26,3 +26,19 @@ exports.expectYesOrNo = function(onYesAction, onNoAction) {
         return dontUnderstand();
     }
 }
+
+
+exports.expectSum = function(expectedSum, actionIfCorrect, actionIfIncorrect) {
+    return function(message) {
+        if (isNaN(message)) {
+            return dontUnderstand();
+        }
+
+        const providedSum = parseInt(message, 10);
+        if (providedSum == expectedSum) {
+            return actionIfCorrect();
+        }
+        
+        return actionIfIncorrect();
+    };
+}
