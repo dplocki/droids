@@ -1,0 +1,11 @@
+{
+  "name": "droids",
+  "version": "0.1.0",
+  "description": "The task for verfication development skill of author",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dawid Plocki",
+  "license": "ISC"
+}
