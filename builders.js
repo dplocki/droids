@@ -6,7 +6,6 @@ function dontUnderstand() {
 
 
 function random(low, high) {
-return 10;
     return Math.floor(Math.random() * (high - low) + low)
 }
 
@@ -60,10 +59,11 @@ exports.showMessage = function(message, action) {
 }
 
 
-exports.whatIsTheSumOfRandom = function(actionOnCorrect, actionOnIncorrect) {
+exports.whatIsTheSumOfRandom = function(messageTemplate, actionOnCorrect, actionOnIncorrect) {
     const numberA = random(1, 99);
     const numberB = random(1, 99);
-    const message = `What is the sum of ${numberA} and ${numberB}?`;
+    const numberPlaceholder = "{RANDOM_NUMBER}";
+    const message = messageTemplate.replace(numberPlaceholder, numberA).replace(numberPlaceholder, numberB);
 
     return exports.showMessage(
         message,

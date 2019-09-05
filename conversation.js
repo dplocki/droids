@@ -13,13 +13,11 @@ module.exports.mathDroidConversation = function() {
             showMessage(
                 "Are you a droid?",
                 expectYesOrNo(
-                    showMessage(
-                        "So then, prove you can do some math. What is the sum of 8 and 9?",
+                    showMessage("So then, prove you can do some math. What is the sum of 8 and 9?",
                         expectSum(8 + 9,
-                            showMessage(
-                                "​You are right! Wanna try another one?",
+                            showMessage("​You are right! Wanna try another one?",
                                 expectYesOrNo(
-                                    whatIsTheSumOfRandom(
+                                    whatIsTheSumOfRandom("What is the sum of {RANDOM_NUMBER} and {RANDOM_NUMBER}?",
                                         eoC("You are right! I’ll remember you can do the maths!"),
                                         eoC("Nice try, human!")
                                     ),
