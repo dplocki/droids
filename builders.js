@@ -21,12 +21,12 @@ exports.eoC = function(message) {
 }
 
 
-exports.expectYesOrNo = function(onYesAction, onNoAction) {
+exports.expectYesOrNo = function(actionOnYes, actionOnNo) {
     return function(message) {
         if (message == "yes") {
-            return onYesAction();
+            return actionOnYes();
         } else if (message == "no") {
-            return onNoAction();
+            return actionOnNo();
         }
 
         return dontUnderstand();
@@ -34,7 +34,7 @@ exports.expectYesOrNo = function(onYesAction, onNoAction) {
 }
 
 
-exports.expectSum = function(expectedSum, actionIfCorrect, actionIfIncorrect) {
+exports.expectSum = function(expectedSum, actionOnCorrect, actionOnIncorrect) {
     return function(message) {
         if (isNaN(message)) {
             return dontUnderstand();
@@ -42,10 +42,10 @@ exports.expectSum = function(expectedSum, actionIfCorrect, actionIfIncorrect) {
 
         const providedSum = parseInt(message, 10);
         if (providedSum == expectedSum) {
-            return actionIfCorrect();
+            return actionOnCorrect();
         }
         
-        return actionIfIncorrect();
+        return actionOnIncorrect();
     };
 }
 
@@ -76,9 +76,9 @@ exports.whatIsTheSumOfRandom = function(actionOnCorrect, actionOnIncorrect) {
 }
 
 
-exports.staySilenceUntilMessageOccurre = function(exceptedMessage, actionOnOccurred) {
+exports.staySilenceUntilMessageOccurre = function(expectedMessage, actionOnOccurred) {
     return function(message) {
-        if (message == exceptedMessage) {
+        if (message == expectedMessage) {
             return actionOnOccurred();
         }
 
