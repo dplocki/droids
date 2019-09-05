@@ -6,8 +6,11 @@ class Scribe {
 
     message(message) {
         const response = this.droid.message(message);
-        const timestamp = new Date();
+        if (this.droid.isWaitingForBegin()) {
+            return null;
+        }
 
+        const timestamp = new Date();
         this.log.push({
             timestamp: timestamp,
             user: message,

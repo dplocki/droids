@@ -35,6 +35,7 @@ app.put("/", (req, res) => {
 
 app.get("/:droidName", (req, res) => {
     const droidName = req.params['droidName'];
+
     if (droidsDatabase.has(droidName))
     {
         res.status(200).send(droidsDatabase.get(droidName).log);

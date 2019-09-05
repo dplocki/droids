@@ -19,6 +19,10 @@ class Droid {
 
         return response.message;
     }
+
+    isWaitingForBegin() {
+        return this.startMessageHandler === this.currentMessageHandler;
+    }
 }
 
 
