@@ -2,10 +2,10 @@
   "name": "droids",
   "version": "0.1.0",
   "description": "The task for verfication development skill of author",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon ./app.js",
+    "test": "nodeunit unit_tests"
   },
   "author": "Dawid Plocki",
   "license": "ISC",
@@ -14,7 +14,8 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "nodeunit": "^0.11.3"
   },
   "keywords": []
 }
