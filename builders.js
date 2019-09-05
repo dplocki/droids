@@ -60,8 +60,8 @@ exports.showMessage = function(message, action) {
 
 
 exports.whatIsTheSumOfRandom = function(messageTemplate, actionOnCorrect, actionOnIncorrect) {
-    const numberA = random(1, 99);
-    const numberB = random(1, 99);
+    const numberA = random(0, 50);
+    const numberB = random(0, 50);
     const numberPlaceholder = "{RANDOM_NUMBER}";
     const message = messageTemplate.replace(numberPlaceholder, numberA).replace(numberPlaceholder, numberB);
 
@@ -87,4 +87,4 @@ exports.staySilenceUntilMessageOccurre = function(expectedMessage, actionOnOccur
             message: null
         };
     };
-}
+};
