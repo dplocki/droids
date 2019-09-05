@@ -42,3 +42,13 @@ exports.expectSum = function(expectedSum, actionIfCorrect, actionIfIncorrect) {
         return actionIfIncorrect();
     };
 }
+
+
+exports.showMessage = function(message, action) {
+    return function() {
+        return {
+            message: message,
+            handler: action
+        }
+    }
+}
