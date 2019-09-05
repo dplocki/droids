@@ -14,7 +14,7 @@ class Droid {
         if (response.isEoC && response.isEoC === true) {
             this.currentMessageHandler = this.startMessageHandler;
         } else {
-            this.currentMessageHandler = response.handler;
+            this.currentMessageHandler = response.handler || this.currentMessageHandler;
         }
 
         return response.message;

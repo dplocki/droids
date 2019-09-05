@@ -6,6 +6,7 @@ function dontUnderstand() {
 
 
 function random(low, high) {
+return 10;
     return Math.floor(Math.random() * (high - low) + low)
 }
 
@@ -74,3 +75,16 @@ exports.whatIsTheSumOfRandom = function(actionOnCorrect, actionOnIncorrect) {
     );
 }
 
+
+exports.staySilenceUntilMessageOccurre = function(exceptedMessage, actionOnOccurred) {
+    return function(message) {
+        if (message == exceptedMessage) {
+            return actionOnOccurred();
+        }
+
+        return {
+            handler: null,
+            message: null
+        };
+    };
+}
