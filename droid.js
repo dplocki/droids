@@ -5,20 +5,26 @@ class Droid {
     }
 
     message(message) {
-        const response = this.currentMessageHandler(message)
+        const response = this.currentMessageHandler(cleanMessage(message));
 
-        if (response.isError === true) {
-            return "Sorry, I didn't get it.";
+        if (response.isError && response.isError == true) {
+            return "Sorry, I didn't understand you.";
         }
 
-        if (response.isEoC === true) {
+        if (response.isEoC && response.isEoC === true) {
             this.currentMessageHandler = this.startMessageHandler;
-            return null;
+        } else {
+            this.currentMessageHandler = response.handler;
         }
 
-        this.currentMessageHandler = response.handler;
-        return response.message
+        return response.message;
     }
 }
+
+
+function cleanMessage(message) {
+    return message.trim().toLowerCase();
+}
+
 
 module.exports = Droid;
