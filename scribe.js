@@ -6,14 +6,18 @@ class Scribe {
 
     message(message) {
         const response = this.droid.message(message);
+        const timestamp = new Date();
 
         this.log.push({
-            timestamp: new Date(),
+            timestamp: timestamp,
             user: message,
             droid: response
         })
 
-        return response;
+        return {
+            timestamp: timestamp,
+            response: response
+        };
     }
 }
 
