@@ -7,12 +7,12 @@ class DroidMemmory
 
     message(message) {
         if (this.notAnyMore == true) {
-            return "I know you, you are ok";
+            return { message: "I know you, you are ok" };
         }
 
         const response = this.droid.message(message);
 
-        if (response === "You are right! I’ll remember you can do the maths!") {
+        if (response.hasOwnProperty("remember")) {
             this.notAnyMore = true;
         }
 

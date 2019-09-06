@@ -9,7 +9,7 @@ class Droid {
         const response = this.currentMessageHandler(cleanMessage(message));
 
         if (response.isError && response.isError == true) {
-            return "Sorry, I didn't understand you.";
+            return { message: "Sorry, I didn't understand you." };
         }
 
         if (response.isEoC && response.isEoC === true) {
@@ -22,7 +22,7 @@ class Droid {
             this.handlersHistory.push(response.handler);
         }
 
-        return response.message;
+        return response;
     }
 
     isWaitingForBegin() {

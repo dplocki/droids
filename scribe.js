@@ -6,7 +6,7 @@ class Scribe {
 
     message(message) {
         const response = this.droid.message(message);
-        if (response === null) {
+        if (response === null || response.message === null) {
             return null;
         }
 
@@ -14,12 +14,12 @@ class Scribe {
         this.log.push({
             timestamp: timestamp,
             user: message,
-            droid: response
+            droid: response.message
         })
 
         return {
             timestamp: timestamp,
-            response: response
+            response: response.message
         };
     }
 }
