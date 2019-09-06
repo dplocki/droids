@@ -1,0 +1,38 @@
+{
+    "author": "Math Mouse",
+    "date": "1993-09-06T07:14:44.886Z",
+    "activation_phrase": "hello",
+    "start": {
+        "question": "Are you a droid?",
+        "question_type": "yes/no",
+        "anserws": {
+            "yes": {
+                "question": "​So then, prove you can do some math. What is the sum of 8 and 9?",
+                "question_type": "sum",
+                "sum": 17,
+                "anserws": {
+                    "__CORRECT": {
+                        "question": "You are right! Wanna try another one?",
+                        "question_type": "yes/no",
+                        "anserws": {
+                            "yes": {
+                                "question": "​What is the sum of {RANDOM_NUMBER} and {RANDOM_NUMBER}?",
+                                "question_type": "sum_random",
+                                "anserws": {
+                                    "__CORRECT": "You are right! I’ll remember you can do the maths!",
+                                    "__INCORRECT": "Nice try, human!"
+                                }
+                            },
+                            "no": "I see… Nice try, human"
+                        }
+                    },
+                    "__INCORRECT": {
+                        "question": "​Let’s try again. What is the sum of 8 and 9?",
+                        "question_type": "step_back"
+                    }
+                }
+            },
+            "no": "​That’s so sad."
+        }
+    }
+}

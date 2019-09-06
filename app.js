@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mathDroidConversation = require('./conversations').mathDroidConversation;
+const { mathDroidConversation, loadConversationTree } = require('./conversations');
 const Droid = require('./droid');
 const Scribe = require('./scribe');
 
@@ -16,7 +16,15 @@ app.use(bodyParser.json({ type: 'application/json'}));
 
 function getDroid(droidName) {
     if (!droidsDatabase.has(droidName)) {
-        droidsDatabase.set(droidName, new Scribe(new Droid(mathDroidConversation())));
+        droidsDatabase.set(
+            droidName,
+            new Scribe(
+                new Droid(
+                    //mathDroidConversation()  
+                    loadConversationTree("example.conversation.json")
+                )
+            )
+        );
     }
 
     return droidsDatabase.get(droidName);

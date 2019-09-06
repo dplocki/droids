@@ -33,3 +33,65 @@ module.exports.mathDroidConversation = function() {
             )
         );
 };
+
+
+function jsonToConverstation(subtree) {
+    if (typeof subtree === 'string' || subtree instanceof String) {
+        return eoC(subtree);
+    }
+
+    if (subtree.hasOwnProperty("activation_phrase")) {
+        return staySilenceUntilMessageOccurre(
+                subtree["activation_phrase"],
+                jsonToConverstation(subtree["start"])
+            );
+    }
+
+    if (subtree["question_type"] === "yes/no") {
+        return showMessage(
+                subtree["question"],
+                expectYesOrNo(
+                    jsonToConverstation(subtree["anserws"]["yes"]),
+                    jsonToConverstation(subtree["anserws"]["no"])
+                )
+            );
+    }
+
+    if (subtree["question_type"] === "sum") {
+        const sum_paramter = parseInt(subtree["sum"], 10);
+        return showMessage(
+                subtree["question"],
+                expectSum(
+                    sum_paramter,
+                    jsonToConverstation(subtree["anserws"]["__CORRECT"]),
+                    jsonToConverstation(subtree["anserws"]["__INCORRECT"])
+                )
+            );
+    }
+
+    if (subtree["question_type"] === "sum_random") {
+        return whatIsTheSumOfRandom(
+                subtree["question"],
+                jsonToConverstation(subtree["anserws"]["__CORRECT"]),
+                jsonToConverstation(subtree["anserws"]["__INCORRECT"])
+            );
+    }
+
+    if (subtree["question_type"] === "step_back") {
+        return stepBack(subtree["question"]);
+    }
+
+
+    throw new Error(`Parsing error: unfamiliar node: ${subtree}`);
+}
+
+
+module.exports.loadConversationTree = function(conversationTreeFile) {
+    const fs = require("fs");
+
+    return jsonToConverstation(
+            JSON.parse(
+                fs.readFileSync(conversationTreeFile)
+            )
+        );
+}
