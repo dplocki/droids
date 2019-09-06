@@ -24,7 +24,8 @@ function getDroid(droidName) {
                     new Droid(
                         //Conversations.mathDroidConversation()
                         Conversations.loadConversationTree("example.conversation.json")
-                    )
+                    ),
+                    "I know you, you are ok"
                 )
             )
         );
