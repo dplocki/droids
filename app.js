@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { mathDroidConversation, loadConversationTree } = require('./conversations');
+const Conversations = require('./conversations');
 const Droid = require('./droid');
 const Scribe = require('./scribe');
 
@@ -20,8 +20,8 @@ function getDroid(droidName) {
             droidName,
             new Scribe(
                 new Droid(
-                    //mathDroidConversation()  
-                    loadConversationTree("example.conversation.json")
+                    //Conversations.mathDroidConversation()
+                    Conversations.loadConversationTree("example.conversation.json")
                 )
             )
         );
@@ -44,7 +44,7 @@ app.put("/", (req, res) => {
 app.get("/:droidName/:day", (req, res) => {
     const droidName = req.params['droidName'];
     const dayDate = new Date(req.params['day']);
-   
+
     if (isNaN(dayDate))
     {
         res.status(400).send(null);
