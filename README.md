@@ -47,3 +47,30 @@ Are you a droid?
     "droidId": "101761aa-f705-4aea-8fb7-0b3b980ebf0f"
 }
 ```
+
+# Initialize
+
+```
+npm install
+```
+
+During development suggest running command is following:
+
+```
+npm run dev
+```
+
+# API
+
+| PATH               | METHOD      | Description  |
+| ------------------ |-------------| ------------ |
+| `/`                | PUT         | The main way to communicate with bot according to requested specification |
+| `/:droidName/:day` | GET         | Returns the history of conversion for given Droid and date |
+
+# Tests
+
+Run command:
+
+```
+npm test
+```
