@@ -5,11 +5,8 @@ class Scribe {
     }
 
     message(message) {
-        const wasWaitingForBeginBefore = this.droid.isWaitingForBegin();
         const response = this.droid.message(message);
-        const wasWaitingForBeginAfter = this.droid.isWaitingForBegin();
-
-        if (wasWaitingForBeginBefore && wasWaitingForBeginAfter) {
+        if (response === null) {
             return null;
         }
 

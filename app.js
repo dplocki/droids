@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Conversations = require('./conversations');
 const Droid = require('./droid');
+const DroidMemmory = require('./droid_memory');
 const Scribe = require('./scribe');
 
 const app = express();
@@ -19,9 +20,11 @@ function getDroid(droidName) {
         droidsDatabase.set(
             droidName,
             new Scribe(
-                new Droid(
-                    //Conversations.mathDroidConversation()
-                    Conversations.loadConversationTree("example.conversation.json")
+                new DroidMemmory(
+                    new Droid(
+                        //Conversations.mathDroidConversation()
+                        Conversations.loadConversationTree("example.conversation.json")
+                    )
                 )
             )
         );
