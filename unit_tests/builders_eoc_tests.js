@@ -1,5 +1,5 @@
-const Droid = require('../droid');
-const eoC = require('../builders').eoC;
+const Droid = require('../src/droid');
+const eoC = require('../src/builders').eoC;
 
 exports.single_eco_builder_must_create_loop = function (test) {
     // Assign
@@ -13,7 +13,7 @@ exports.single_eco_builder_must_create_loop = function (test) {
     droid.message("cvcv");
 
     // Assert
-    test.equal(droid.message("xcxcxc"), message, "Droid should always replay the message");
+    test.equal(droid.message("xcxcxc").message, message, "Droid should always replay the message");
     test.equal(droid.currentMessageHandler, handler, "Droid should always be in one state");
     test.done();
 };

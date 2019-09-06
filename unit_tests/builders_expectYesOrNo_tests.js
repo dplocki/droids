@@ -1,5 +1,5 @@
-const Droid = require('../droid');
-const { expectYesOrNo, eoC } = require('../builders');
+const Droid = require('../src/droid');
+const { expectYesOrNo, eoC } = require('../src/builders');
 
 
 exports.expectYesOrNo_should_react_correctly_on_yes = function (test) {
@@ -15,7 +15,7 @@ exports.expectYesOrNo_should_react_correctly_on_yes = function (test) {
     const response = droid.message("yes");
 
     // Assert
-    test.equal(response, message, "Droid should replay the correct message");
+    test.equal(response.message, message, "Droid should replay the correct message");
     test.equal(droid.currentMessageHandler, handler, "Droid should return to start state");
     test.done();
 };
@@ -34,7 +34,7 @@ exports.expectYesOrNo_should_react_correctly_on_no = function (test) {
     const response = droid.message("no");
 
     // Assert
-    test.equal(response, message, "Droid should replay the correct message");
+    test.equal(response.message, message, "Droid should replay the correct message");
     test.equal(droid.currentMessageHandler, handler, "Droid should return to start state");
     test.done();
 };
@@ -53,7 +53,7 @@ exports.expectYesOrNo_should_be_limited_to_yes_or_no = function (test) {
     const response = droid.message("???");
 
     // Assert
-    test.notEqual(response, message, "Droid should replay with the error message");
+    test.notEqual(response.message, message, "Droid should replay with the error message");
     test.equal(droid.currentMessageHandler, handler, "Droid should return to start state");
     test.done();
 };

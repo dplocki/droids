@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const Conversations = require('./conversations');
-const Droid = require('./droid');
-const DroidMemmory = require('./droid_memory');
-const Scribe = require('./scribe');
+const Conversations = require('./src/conversations');
+const Droid = require('./src/droid');
+const DroidMemmory = require('./src/droid_memory');
+const Scribe = require('./src/scribe');
 
 const app = express();
 const port = process.env.PORT || 3000;

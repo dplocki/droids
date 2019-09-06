@@ -1,4 +1,4 @@
-const Droid = require('../droid');
+const Droid = require('../src/droid');
 
 exports.droid_should_return_message_from_handler = function (test) {
     // Assign
@@ -10,7 +10,7 @@ exports.droid_should_return_message_from_handler = function (test) {
     });
 
     // Assert
-    test.equal(droid.message("something"), message, "Droid should simply pass the message");
+    test.equal(droid.message("something").message, message, "Droid should simply pass the message");
     test.done();
 };
 
@@ -33,12 +33,12 @@ exports.droid_should_change_state_according_to_resposne = function (test) {
     const response = droid.message("Something");
     
     // Assert
-    test.equal(response, "Stage 1", "Droid should return message from first stage");
+    test.equal(response.message, "Stage 1", "Droid should return message from first stage");
     test.equal(droid.currentMessageHandler, state2MessageHandler, "Droid didn't change his message handler");
     test.done();
 };
 
-exports.droid_should_return_return_to_begin_state_after_eoc = function (test) {
+exports.droid_should_return_to_begin_state_after_eoc = function (test) {
     // Assign
     const message = "ok";
 
@@ -64,10 +64,10 @@ exports.droid_should_return_return_to_begin_state_after_eoc = function (test) {
     const droid = new Droid(state1MessageHandler);
     droid.message("you are in stage 1");
     droid.message("you are in stage 2");
-    const messageReplay = droid.message("you are in stage 3");
+    const replay = droid.message("you are in stage 3");
 
     // Asssert
-    test.equal(messageReplay, null, "Droid should not return any message (conversion has been finished)");
+    test.ok(!replay.hasOwnProperty('message'), "Droid should not return any message (conversion has been finished)");
     test.equal(droid.currentMessageHandler, state1MessageHandler)
     test.done();
 };
@@ -88,7 +88,7 @@ exports.droid_should_return_error_message = function (test) {
     const messageReplay = droid.message("move to stage 2");
 
     // Asssert
-    test.notEqual(messageReplay, message, "Droid should not return normal message");
+    test.notEqual(messageReplay.message, message, "Droid should not return normal message");
     test.equal(droid.currentMessageHandler, state1MessageHandler, "Droid should not change stage");
     test.done();
 };

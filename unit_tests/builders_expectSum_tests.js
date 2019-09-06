@@ -1,5 +1,5 @@
-const Droid = require('../droid');
-const { expectSum, eoC } = require('../builders');
+const Droid = require('../src/droid');
+const { expectSum, eoC } = require('../src/builders');
 
 
 exports.expectSum_should_react_on_correct = function (test) {
@@ -16,7 +16,7 @@ exports.expectSum_should_react_on_correct = function (test) {
     const response = droid.message("1");
 
     // Assert
-    test.equal(response, message, "Droid should replay the correct message");
+    test.equal(response.message, message, "Droid should replay the correct message");
     test.done();
 };
 
@@ -35,7 +35,7 @@ exports.expectSum_should_react_on_incorrect = function (test) {
     const response = droid.message("2");
 
     // Assert
-    test.equal(response, message, "Droid should replay the correct message");
+    test.equal(response.message, message, "Droid should replay the correct message");
     test.done();
 };
 
@@ -54,7 +54,7 @@ exports.expectSum_should_react_on_incorrect_input = function (test) {
     const response = droid.message("???");
 
     // Assert
-    test.notEqual(response, message, "Droid should replay with the error message");
+    test.notEqual(response.message, message, "Droid should replay with the error message");
     test.equal(droid.currentMessageHandler, handler, "Droid should return to start state");
     test.done();
 };
