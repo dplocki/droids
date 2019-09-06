@@ -19,7 +19,11 @@
                                 "question": "​What is the sum of {RANDOM_NUMBER} and {RANDOM_NUMBER}?",
                                 "question_type": "sum_random",
                                 "anserws": {
-                                    "__CORRECT": "You are right! I’ll remember you can do the maths!",
+                                    "__CORRECT": {
+                                        "question": "You are right! I’ll remember you can do the maths!",
+                                        "question_type": "eoc",
+                                        "remember": { "canMath": true }
+                                    },
                                     "__INCORRECT": "Nice try, human!"
                                 }
                             },

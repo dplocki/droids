@@ -10,12 +10,18 @@ function random(low, high) {
 }
 
 
-exports.eoC = function(message) {
+exports.eoC = function(message, rememberPackage) {
     return function() {
-        return {
+        let result = {
             message: message,
-            isEoC: true
+            isEoC: true,
         };
+
+        if (rememberPackage) {
+            result['remember'] = rememberPackage;
+        }
+
+        return result;
     }
 }
 

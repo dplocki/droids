@@ -19,7 +19,7 @@ module.exports.mathDroidConversation = function() {
                             showMessage("​You are right! Wanna try another one?",
                                 expectYesOrNo(
                                     whatIsTheSumOfRandom("What is the sum of {RANDOM_NUMBER} and {RANDOM_NUMBER}?",
-                                        eoC("You are right! I’ll remember you can do the maths!"),
+                                        eoC("You are right! I’ll remember you can do the maths!", { canMath: true }),
                                         eoC("Nice try, human!")
                                     ),
                                     eoC("I see… Nice try, human!")
@@ -81,6 +81,9 @@ function jsonToConverstation(subtree) {
         return stepBack(subtree["question"]);
     }
 
+    if (subtree["question_type"] === "eoc") {
+        return eoC(subtree["question"], subtree["remember"]);
+    }
 
     throw new Error(`Parsing error: unfamiliar node: ${subtree}`);
 }

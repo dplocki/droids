@@ -11,7 +11,6 @@ class DroidMemmory
         }
 
         const response = this.droid.message(message);
-
         if (response.hasOwnProperty("remember")) {
             this.notAnyMore = true;
         }
