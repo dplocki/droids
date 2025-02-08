@@ -54,13 +54,28 @@ human who knows droidId and the day that conversation has a place.
 ## Initialize
 
 ```sh
-npm install
+npm ci
 ```
 
 During development suggest running command is following:
 
 ```sh
 npm run dev
+```
+
+### Running build system inside the container
+
+Download an image:
+
+```sh
+docker pull node
+```
+
+Run the downloaded image:
+
+```sh
+docker run -it -v $(pwd):/home/node node bash
+cd /home/node
 ```
 
 ## API
