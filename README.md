@@ -29,7 +29,7 @@ human who knows droidId and the day that conversation has a place.
 
  * Samples:
 
-    ```js
+    ```json
     {
         "message": "hello",
         "droidId": "101761aa-f705-4aea-8fb7-0b3b980ebf0f"
@@ -53,13 +53,13 @@ human who knows droidId and the day that conversation has a place.
 
 ## Initialize
 
-```
+```sh
 npm install
 ```
 
 During development suggest running command is following:
 
-```
+```sh
 npm run dev
 ```
 
@@ -74,6 +74,6 @@ npm run dev
 
 Run command:
 
-```
+```sh
 npm test
 ```
