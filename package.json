@@ -1,7 +1,7 @@
 {
   "name": "droids",
-  "version": "0.1.0",
-  "description": "The task for verfication development skill of author",
+  "version": "1.0.0",
+  "description": "The task for verification development skill of author",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon ./app.js",
