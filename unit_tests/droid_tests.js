@@ -14,7 +14,7 @@ exports.droid_should_return_message_from_handler = function (test) {
     test.done();
 };
 
-exports.droid_should_change_state_according_to_resposne = function (test) {
+exports.droid_should_change_state_according_to_response = function (test) {
     // Assign
     const state2MessageHandler = function() {
         return {
@@ -77,7 +77,7 @@ exports.droid_should_return_error_message = function (test) {
     const message = "test message";
     const state1MessageHandler = function () {
         return {
-            handler: function () { throw new Exception("I shoudn't be called!"); },
+            handler: function () { throw new Exception("I shouldn't be called!"); },
             message: message,
             isError: true
         }

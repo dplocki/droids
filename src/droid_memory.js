@@ -1,4 +1,4 @@
-class DroidMemmory
+class DroidMemory
 {
     constructor(droid, iKnowYouText) {
         this.droid = droid;
@@ -20,4 +20,4 @@ class DroidMemmory
     }
 }
 
-module.exports = DroidMemmory;
+module.exports = DroidMemory;
