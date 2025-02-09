@@ -5,20 +5,20 @@
     "start": {
         "question": "Are you a droid?",
         "question_type": "yes/no",
-        "anserws": {
+        "answers": {
             "yes": {
                 "question": "​So then, prove you can do some math. What is the sum of 8 and 9?",
                 "question_type": "sum",
                 "sum": 17,
-                "anserws": {
+                "answers": {
                     "__CORRECT": {
                         "question": "You are right! Wanna try another one?",
                         "question_type": "yes/no",
-                        "anserws": {
+                        "answers": {
                             "yes": {
                                 "question": "​What is the sum of {RANDOM_NUMBER} and {RANDOM_NUMBER}?",
                                 "question_type": "sum_random",
-                                "anserws": {
+                                "answers": {
                                     "__CORRECT": {
                                         "question": "You are right! I’ll remember you can do the maths!",
                                         "question_type": "eoc",

@@ -1,6 +1,6 @@
 const {
     eoC,
-    staySilenceUntilMessageOccurre,
+    staySilentUntilMessageOccurs,
     showMessage,
     expectYesOrNo,
     expectSum,
@@ -10,7 +10,7 @@ const {
 
 
 module.exports.mathDroidConversation = function() {
-    return staySilenceUntilMessageOccurre("hello",
+    return staySilentUntilMessageOccurs("hello",
             showMessage(
                 "Are you a droid?",
                 expectYesOrNo(
@@ -35,15 +35,15 @@ module.exports.mathDroidConversation = function() {
 };
 
 
-function jsonToConverstation(subtree) {
+function jsonToConversation(subtree) {
     if (typeof subtree === 'string' || subtree instanceof String) {
         return eoC(subtree);
     }
 
     if (subtree.hasOwnProperty("activation_phrase")) {
-        return staySilenceUntilMessageOccurre(
+        return staySilentUntilMessageOccurs(
                 subtree["activation_phrase"],
-                jsonToConverstation(subtree["start"])
+                jsonToConversation(subtree["start"])
             );
     }
 
@@ -51,20 +51,20 @@ function jsonToConverstation(subtree) {
         return showMessage(
                 subtree["question"],
                 expectYesOrNo(
-                    jsonToConverstation(subtree["anserws"]["yes"]),
-                    jsonToConverstation(subtree["anserws"]["no"])
+                    jsonToConversation(subtree["answers"]["yes"]),
+                    jsonToConversation(subtree["answers"]["no"])
                 )
             );
     }
 
     if (subtree["question_type"] === "sum") {
-        const sum_paramter = parseInt(subtree["sum"], 10);
+        const sum_parameter = parseInt(subtree["sum"], 10);
         return showMessage(
                 subtree["question"],
                 expectSum(
-                    sum_paramter,
-                    jsonToConverstation(subtree["anserws"]["__CORRECT"]),
-                    jsonToConverstation(subtree["anserws"]["__INCORRECT"])
+                    sum_parameter,
+                    jsonToConversation(subtree["answers"]["__CORRECT"]),
+                    jsonToConversation(subtree["answers"]["__INCORRECT"])
                 )
             );
     }
@@ -72,8 +72,8 @@ function jsonToConverstation(subtree) {
     if (subtree["question_type"] === "sum_random") {
         return whatIsTheSumOfRandom(
                 subtree["question"],
-                jsonToConverstation(subtree["anserws"]["__CORRECT"]),
-                jsonToConverstation(subtree["anserws"]["__INCORRECT"])
+                jsonToConversation(subtree["answers"]["__CORRECT"]),
+                jsonToConversation(subtree["answers"]["__INCORRECT"])
             );
     }
 
@@ -92,7 +92,7 @@ function jsonToConverstation(subtree) {
 module.exports.loadConversationTree = function(conversationTreeFile) {
     const fs = require("fs");
 
-    return jsonToConverstation(
+    return jsonToConversation(
             JSON.parse(
                 fs.readFileSync(conversationTreeFile)
             )

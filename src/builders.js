@@ -1,4 +1,4 @@
-function dontUnderstand() {
+function notUnderstand() {
     return {
         isError: true
     };
@@ -34,7 +34,7 @@ exports.expectYesOrNo = function(actionOnYes, actionOnNo) {
             return actionOnNo();
         }
 
-        return dontUnderstand();
+        return notUnderstand();
     }
 }
 
@@ -42,14 +42,14 @@ exports.expectYesOrNo = function(actionOnYes, actionOnNo) {
 exports.expectSum = function(expectedSum, actionOnCorrect, actionOnIncorrect) {
     return function(message) {
         if (isNaN(message)) {
-            return dontUnderstand();
+            return notUnderstand();
         }
 
         const providedSum = parseInt(message, 10);
         if (providedSum == expectedSum) {
             return actionOnCorrect();
         }
-        
+
         return actionOnIncorrect();
     };
 }
@@ -82,7 +82,7 @@ exports.whatIsTheSumOfRandom = function(messageTemplate, actionOnCorrect, action
 }
 
 
-exports.staySilenceUntilMessageOccurre = function(expectedMessage, actionOnOccurred) {
+exports.staySilentUntilMessageOccurs = function(expectedMessage, actionOnOccurred) {
     return function(message) {
         if (message == expectedMessage) {
             return actionOnOccurred();
