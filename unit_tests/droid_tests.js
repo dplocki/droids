@@ -31,7 +31,7 @@ exports.droid_should_change_state_according_to_resposne = function (test) {
     // Act
     const droid = new Droid(state1MessageHandler);
     const response = droid.message("Something");
-    
+
     // Assert
     test.equal(response.message, "Stage 1", "Droid should return message from first stage");
     test.equal(droid.currentMessageHandler, state2MessageHandler, "Droid didn't change his message handler");
@@ -66,7 +66,7 @@ exports.droid_should_return_to_begin_state_after_eoc = function (test) {
     droid.message("you are in stage 2");
     const replay = droid.message("you are in stage 3");
 
-    // Asssert
+    // Assert
     test.ok(!replay.hasOwnProperty('message'), "Droid should not return any message (conversion has been finished)");
     test.equal(droid.currentMessageHandler, state1MessageHandler)
     test.done();
@@ -87,7 +87,7 @@ exports.droid_should_return_error_message = function (test) {
     const droid = new Droid(state1MessageHandler);
     const messageReplay = droid.message("move to stage 2");
 
-    // Asssert
+    // Assert
     test.notEqual(messageReplay.message, message, "Droid should not return normal message");
     test.equal(droid.currentMessageHandler, state1MessageHandler, "Droid should not change stage");
     test.done();
