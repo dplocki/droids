@@ -74,7 +74,7 @@ docker pull node
 Run the downloaded image:
 
 ```sh
-docker run -it -v $(pwd):/home/node -p 3000:3000 -w /home/node node bash
+docker run -it --name droid_container -v $(pwd):/home/node -p 3000:3000 -w /home/node node bash
 ```
 
 ## API
