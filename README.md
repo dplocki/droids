@@ -2,7 +2,7 @@
 
 The node project.
 
-## Task:
+## Task
 
 Create an API for Droids:
 
