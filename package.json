@@ -8,7 +8,7 @@
     "test": "nodeunit unit_tests"
   },
   "author": "Dawid Plocki",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.0"
